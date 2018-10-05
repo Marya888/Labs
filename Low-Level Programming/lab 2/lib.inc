@@ -7,6 +7,8 @@ global string_equals
 global print_newline
 global read_word
 global read_char
+global print_error
+
 string_length:
     xor rax, rax
     .loop:
@@ -25,6 +27,15 @@ print_string:
 	mov rax, 1
 	syscall
     	ret
+
+print_error:
+	call string_length 
+	mov rsi, rdi
+	mov rdx, rax
+	mov rdi, 2
+	mov rax, 1
+	syscall
+    ret
 
 print_char:
     push rdi
@@ -104,8 +115,8 @@ read_word:
 	je .end_word_0
 	cmp al, 10
 	je .end_word_0
-	cmp r8, 256
-	je .end_word_1	
+	cmp r8, 255
+	je .end_word_skip	
 	
 	mov [buf+r8], al
 	inc r8
@@ -115,9 +126,18 @@ read_word:
 	xor rax, rax
 	jmp .end_word
 	
+	.end_word_skip:	
+	.loopwer2:
+	call read_char
+	cmp al, 0
+	je .end_word_1
+	cmp al, 10
+	je .end_word_1
+	jmp .loopwer2
+	
 	.end_word_1:
-	mov rax, 1	
-
+	mov rax, 1
+	
 	.end_word:
 	mov [buf+r8+1], al
 	mov rdi, buf
