@@ -1,4 +1,5 @@
 section .data
+ arg: db '3 72',0
  err: db 'lol fail',0
  err2: db 'big buf',0
 
@@ -10,23 +11,25 @@ section .text
 	extern print_newline
 	extern read_word
 	extern read_char
+	extern print_error
 	global _start
 	_start:	
-		xor rax, rax		
+		xor rax, rax
 		call read_word   ; adr buf in rdi 
-		stop_read:
 		
+		stop_read:		
 		cmp al, 0
 		je .true_word
 		push rdi
 		mov rdi, err2
-		call print_string
+		call print_error
 		call print_newline
 		pop rdi
+
 		.true_word:
 		mov rsi, link
 		call find_word   ; result in rdi
-
+		
 		stop:
 		cmp rdi, 0
 		jne .restart
@@ -34,7 +37,8 @@ section .text
 		.restart:
 		call print_string
 		call print_newline
-
+					
 mov rax, 60 
 xor rdi, rdi
 syscall
+	
