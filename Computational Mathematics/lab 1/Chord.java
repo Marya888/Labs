@@ -45,14 +45,17 @@ public class Chord {
 		if (resout) {
 			try {
 				byte[] buffer =("x: "+ df.format(a)+"	").getBytes();	        
-	            out.write(buffer, 0, buffer.length);	         
-	            buffer = ("Количество итераций: "+ count+"	").getBytes();	        
-	            out.write(buffer, 0, buffer.length);
+	            		out.write(buffer, 0, buffer.length);	   
+				buffer =("y(x): "+ df.format(y_a)+"	").getBytes();	        
+	         	 	out.write(buffer, 0, buffer.length);
+	            		buffer = ("Количество итераций: "+ count+"	").getBytes();	        	           
+				out.write(buffer, 0, buffer.length);
 			}catch(IOException ex){	              
-	            System.out.println(ex.getMessage());
+	            		System.out.println(ex.getMessage());
 			}
 		}else {
 			System.out.println(df.format(a));
+			System.out.println("Значение функции в корне: "+ df.format(y_a));
 			System.out.println("Количество итераций: "+ count);
 		}
 	}
