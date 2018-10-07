@@ -41,19 +41,20 @@ public class Tangent {
 		//System.out.printf("%.3f", b);		
 		df.setRoundingMode(RoundingMode.DOWN);
 		
-		
-		
 		if (resout) {
 			try {
 				byte[] buffer =("x: "+ df.format(b)+"	").getBytes();	        
-	            out.write(buffer, 0, buffer.length);
-	            buffer = ("Количество итераций: "+ count +"	").getBytes();	        
-	            out.write(buffer, 0, buffer.length);
+	            		out.write(buffer, 0, buffer.length);
+		    		buffer =("y(x): "+ df.format(y_b)+"	").getBytes();	        
+	            		out.write(buffer, 0, buffer.length);
+	            		buffer = ("Количество итераций: "+ count +"	").getBytes();	        
+	            		out.write(buffer, 0, buffer.length);
 			}catch(IOException ex){	              
-	            System.out.println(ex.getMessage());
+	            		System.out.println(ex.getMessage());
 			}
 		}else {
 			System.out.println(df.format(b));
+			System.out.println("Значение функции в корне: "+ df.format(y_b));
 			System.out.println("Количество итераций: "+ count);
 		}
 	}
