@@ -17,7 +17,7 @@ public class Tangent {
 	DecimalFormat df = new DecimalFormat("#0.000");
 	FileOutputStream out;
 	boolean resout=false;
-	double E=0.000001;
+	double E=0.01;//0.000001;
 	double y_b;
 	double y1_b;
 	double y_a;
@@ -31,21 +31,22 @@ public class Tangent {
 			a=b;
 			b=c;
 		}
-		while((Math.abs(b-a)>E) && (Math.abs(y_b)>E)) {
+		double b_old=a;
+		while((Math.abs(b-b_old)>E) && (Math.abs(y_b)>E)) {
 			count++;
 			y_b=2.335*b*b*b+3.98*b*b-4.52*b-3.11;
 			y1_b=7.005*b*b+7.96*b-4.52;
-			b=b-y_b/y1_b;
+			b_old=b;
+			b=b-y_b/y1_b;	
 			y_b=2.335*b*b*b+3.98*b*b-4.52*b-3.11;
-		}
-		//System.out.printf("%.3f", b);		
+		}	
 		df.setRoundingMode(RoundingMode.DOWN);
 		
 		if (resout) {
 			try {
 				byte[] buffer =("x: "+ df.format(b)+"	").getBytes();	        
 	            		out.write(buffer, 0, buffer.length);
-		    		buffer =("y(x): "+ df.format(y_b)+"	").getBytes();	        
+	            		buffer =("y(x): "+ df.format(y_b)+"	").getBytes();	        
 	            		out.write(buffer, 0, buffer.length);
 	            		buffer = ("Количество итераций: "+ count +"	").getBytes();	        
 	            		out.write(buffer, 0, buffer.length);
@@ -59,3 +60,4 @@ public class Tangent {
 		}
 	}
 }
+
