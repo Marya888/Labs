@@ -18,7 +18,7 @@ public class Chord {
 	DecimalFormat df = new DecimalFormat("#0.000");
 	FileOutputStream out;
 	boolean resout=false;
-	double E=0.000001;
+	double E=0.01;//0.000001;
 	double y_b;
 	double y_a;
 	double y_ab;
@@ -38,17 +38,16 @@ public class Chord {
 			y_a=2.335*a*a*a+3.98*a*a-4.52*a-3.11;
 			a=(a*y_b-b*y_a)/(y_b-y_a);
 			y_a=2.335*a*a*a+3.98*a*a-4.52*a-3.11;
-		}
-		//System.out.printf("%.3f", a);		
+		}	
 		df.setRoundingMode(RoundingMode.DOWN);
 		
 		if (resout) {
 			try {
 				byte[] buffer =("x: "+ df.format(a)+"	").getBytes();	        
-	            		out.write(buffer, 0, buffer.length);	   
-				buffer =("y(x): "+ df.format(y_a)+"	").getBytes();	        
-	         	 	out.write(buffer, 0, buffer.length);
-	            		buffer = ("Количество итераций: "+ count+"	").getBytes();	        	           
+	            		out.write(buffer, 0, buffer.length);
+	            		buffer =("y(x): "+ df.format(y_a)+"	").getBytes();	        
+	            		out.write(buffer, 0, buffer.length);
+	            		buffer = ("Количество итераций: "+ count+"	").getBytes();	        
 				out.write(buffer, 0, buffer.length);
 			}catch(IOException ex){	              
 	            		System.out.println(ex.getMessage());
