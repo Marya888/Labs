@@ -2,10 +2,12 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Scanner;
+import javax.swing.SwingUtilities;
+import javax.swing.WindowConstants;
 
 //http://allcalc.ru/node/676
 
-public class Main {
+public class App {
 	public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);
 		double E=0;
@@ -58,6 +60,9 @@ public class Main {
         				}
         			}
         			fin.close();
+				volidet(a1,b1);
+        			volidet(a2,b2);
+        			volidet(a3,b3);
         			break;
         		}catch(IOException ex){     
         			System.out.println(ex.getMessage());
@@ -71,19 +76,23 @@ public class Main {
         	while (true) {
         		try {
         			in = new Scanner(System.in);
+        			System.out.println("Введите E: ");
         			E = in.nextDouble();   // 0.000001
         			System.out.println("Введите a для 1ой точки: ");
         			a1 = in.nextDouble();
         			System.out.println("Введите b для 1ой точки: ");
         			b1 = in.nextDouble();
+        			volidet(a1,b1);
         			System.out.println("Введите a для 2ой точки: ");
         			a2 = in.nextDouble();
         			System.out.println("Введите b для 2ой точки: ");
         			b2 = in.nextDouble();
+        			volidet(a2,b2);
         			System.out.println("Введите a для 3ей точки: ");
         			a3 = in.nextDouble();
         			System.out.println("Введите b для 3ей точки: ");
         			b3 = in.nextDouble();
+        			volidet(a3,b3);
         			break;
         		}catch(Exception e) {
         			System.out.println("Введите корректные данные!");
@@ -130,7 +139,15 @@ public class Main {
     		Tangent.tangent(a3,b3);
         }
         
-		
+	x1=a1;
+        x2=b3;
+        SwingUtilities.invokeLater(() -> {
+        	Chart Chart = new Chart("График",x1,x2);
+        	Chart.setSize(800, 400);
+        	Chart.setLocationRelativeTo(null);
+        	Chart.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        	Chart.setVisible(true);
+          });	
 		
 		
 		
@@ -147,6 +164,15 @@ public class Main {
 */
 	}
 	
+	static double x1,x2;
+	static void volidet(double a, double b) throws Exception {
+		double y_a=2.335*a*a*a+3.98*a*a-4.52*a-3.11;
+		double y_b=2.335*b*b*b+3.98*b*b-4.52*b-3.11;
+		if((y_a<0 && y_b<0) || (y_a>0 && y_b>0) || (y_a==0 && y_b==0)) {
+			System.out.println("fail");
+			throw new Exception();
+		}
+	}
 /*	
 	static final double E=0.000001;	
 	static int count;
