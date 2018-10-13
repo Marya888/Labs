@@ -18,7 +18,7 @@
 
     <servlet>
         <servlet-name>mylab2</servlet-name>
-        <servlet-class>AreaCheckServlet</servlet-class>
+        <servlet-class>src.AreaCheckServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
