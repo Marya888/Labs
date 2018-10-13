@@ -4,7 +4,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 
 public class AreaCheckServlet extends HttpServlet {
 
@@ -13,9 +12,9 @@ public class AreaCheckServlet extends HttpServlet {
         int x,r;
         double y;
 
-        x=new Integer(req.getParameter("x"));
-        y=new Double(req.getParameter("y"));
-        r=new Integer(req.getParameter("r"));
+        x=new Integer((Integer) this.getServletContext().getAttribute("x"));
+        y=new Double((Double) this.getServletContext().getAttribute("y"));
+        r=new Integer((Integer) this.getServletContext().getAttribute("r"));
 
         req.setAttribute("find",find(x,y,r));
 

@@ -6,7 +6,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 
 public class ControllerServlet extends HttpServlet {
 
@@ -16,15 +15,15 @@ public class ControllerServlet extends HttpServlet {
         String y=req.getParameter("y");
         String r=req.getParameter("r");
 
-        double x_code=volidet(x, "x");
+        int x_code=(int)volidet(x, "x");
         double y_code=volidet(y, "y");
-        double r_code=volidet(r, "r");
-
-
-        PrintWriter pw = resp.getWriter();
+        int r_code=(int)volidet(r, "r");
 
         if((x_code + y_code + r_code)==0) {
-            RequestDispatcher dispatcher = req.getRequestDispatcher("AreaCheckServlet");
+            this.getServletContext().setAttribute("x", x_code);
+            this.getServletContext().setAttribute("y", y_code);
+            this.getServletContext().setAttribute("r", r_code);
+            RequestDispatcher dispatcher = req.getRequestDispatcher("/check");
             dispatcher.forward(req, resp);
         }else{
             RequestDispatcher dispatcher = req.getRequestDispatcher("/Start.jsp");
