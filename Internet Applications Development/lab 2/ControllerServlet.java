@@ -16,11 +16,12 @@ public class ControllerServlet extends HttpServlet {
         String y=req.getParameter("y");
         String r=req.getParameter("r");
 
-        int x_code=volidet(x, "x");
-        int y_code=volidet(y, "y");
-        int r_code=volidet(r, "r");
+        double x_code=volidet(x, "x");
+        double y_code=volidet(y, "y");
+        double r_code=volidet(r, "r");
 
 
+        PrintWriter pw = resp.getWriter();
 
         if((x_code + y_code + r_code)==0) {
             RequestDispatcher dispatcher = req.getRequestDispatcher("AreaCheckServlet");
@@ -29,6 +30,11 @@ public class ControllerServlet extends HttpServlet {
             RequestDispatcher dispatcher = req.getRequestDispatcher("/Start.jsp");
             dispatcher.forward(req, resp);
         }
+//            pw.write("Страница JSP");
+//            pw.write("x = "+x_code);
+//            pw.write("y = "+y_code);
+//            pw.write("r = "+r_code);
+
     }
 
     @Override
@@ -36,7 +42,7 @@ public class ControllerServlet extends HttpServlet {
         doGet(req, resp);
     }
 
-    private int volidet(String arg, String name){
+    private double volidet(String arg, String name){
         int result=0;
         double arg_num=0;
         boolean res=true;
@@ -94,7 +100,7 @@ public class ControllerServlet extends HttpServlet {
 
     private String comma(String arg){
         int pos = arg.indexOf(',');
-        if(pos!=0 & pos!=arg.length()-1){
+        if(pos!=-1 & pos!=0 & pos!=arg.length()-1){
             try {
                 new Double(arg.substring(0,pos));
                 new Double(arg.substring(pos+1));
