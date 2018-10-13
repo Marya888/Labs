@@ -13,7 +13,7 @@
 
     <servlet>
         <servlet-name>mylab</servlet-name>
-        <servlet-class>ControllerServlet</servlet-class>
+        <servlet-class>src.ControllerServlet</servlet-class>
     </servlet>
 
     <servlet>
@@ -24,6 +24,11 @@
     <servlet-mapping>
         <servlet-name>mylab2</servlet-name>
         <url-pattern>/check</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>mylab</servlet-name>
+        <url-pattern>/</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>
