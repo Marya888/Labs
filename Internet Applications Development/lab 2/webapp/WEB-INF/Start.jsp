@@ -138,16 +138,7 @@
             </p>
 
         </div>
-        <div id="img" title="Бесполезный график:)">
-            <%--<figure>График с заданной областью</figure>--%>
-            <%--<img src="123.png" alt="Картинка не грузится" usemap="#picture">--%>
-            <%--<map name="picture">--%>
-                <%--<area shape="rect" coords="30,111,110,150" title="попадание">--%>
-                <%--<area shape="poly" coords="110,110,110,32,150,110,110,110" title="попадание">--%>
-                <%--<area shape="poly" coords="70,110,70,105,72,98,74,93,76,90,79,86,82,82,85,79,88,77,92,75,95,73,100,72,105,71,110,70,110,110,70,110" title="попадание">--%>
-                <%--<area shape="default" title="не попадание">--%>
-            <%--</map>--%>
-        </div>
+        <canvas id="canvas" width="400px" height="400px">canvas</canvas>
 
     </div>
 
@@ -159,7 +150,6 @@
         </footer>
     -->
 </div>
-<canvas id="canvas" width="400px" height="400px">canvas</canvas>
 <script type="text/javascript">
     <%@include file="/views/js/canvas.js"%>
 </script>
