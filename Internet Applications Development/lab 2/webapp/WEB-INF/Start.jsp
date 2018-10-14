@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+    <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 
 
@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <title>Стартовая страница</title>
     <link rel="stylesheet" href="ret2.css">
-    <script type="text/javascript" charset="utf-8" src="snow.js" defer></script>
+    <%--<script type="text/javascript" charset="utf-8" src="snow.js" defer></script>--%>
     <!--    <script type="text/javascript" charset="utf-8" src="ajax.js" defer></script>  -->
 </head>
 
@@ -59,58 +59,20 @@
                         <input name="x7" type="button" value="1" onclick="val(this)">
                         <input name="x8" type="button" value="1.5" onclick="val(this)">
                         <input name="x9" type="button" value="2" onclick="val(this)">
-                        <%
-                            int code=new Integer(request.getAttribute("xyr_code").toString());
-
-                            String x_state="",y_state="",r_state="";
-                            if((int)(code*0.01)==1)
-                                x_state="enter x";
-                            if((int)(code*0.1)%10==1)
-                                y_state="enter y";
-                            if(code%10==1)
-                                r_state="enter r";
-
-                            if((int)(code*0.01)==2)
-                                x_state="can't start from point";
-                            if((int)(code*0.1)%10==2)
-                                y_state="can't start from point";
-                            if(code%10==2)
-                                r_state="can't start from point";
-
-                            if((int)(code*0.01)==4)
-                                x_state="must be a number";
-                            if((int)(code*0.1)%10==4)
-                                y_state="must be a number";
-                            if(code%10==4)
-                                r_state="must be a number";
-
-                            if((int)(code*0.01)==8)
-                                x_state="|x| must be one of the values 0,1,2,3,4";
-                            if((int)(code*0.1)%10==8)
-                                y_state="should be in range (-3; 5)";
-                            if(code%10==8)
-                                r_state="must be one of the values 1,2,3,4,5";
-                        %>
-                        <div id=volidButton>
-                            <%=x_state%>
-                        </div>
+                        <div id=volidButton></div>
                     </li>
                     <li>
                         Y <input id="y" name="y" type="text" placeholder="(-3...5)">
-                        <div id=volidText>
-                            <%=y_state%>
-                        </div>
+                        <div id=volidText></div>
                     </li>
                     <li>
                         <label for="r">R:</label>
-                        <input id="r" name="r" type="radio" value="1" checked>1
-                        <input name="r" type="radio"  value="2">2
-                        <input name="r" type="radio" value="3">3
-                        <input name="r" type="radio" value="4">4
-                        <input name="r" type="radio" value="5">5
-                        <div id=volidRedio>
-                            <%=r_state%>
-                        </div>
+                        <input id="r" name="r" type="radio" value="1" onclick="canvas('canvas', 0, 0, 1);" checked>1
+                        <input name="r" type="radio" value="2" onclick="canvas('canvas', 0, 0, 2);">2
+                        <input name="r" type="radio" value="3" onclick="canvas('canvas', 0, 0, 3);">3
+                        <input name="r" type="radio" value="4" onclick="canvas('canvas', 0, 0, 4);">4
+                        <input name="r" type="radio" value="5" onclick="canvas('canvas', 0, 0, 5);">5
+                        <div id=volidRedio></div>
                     </li>
                 </ul>
             </form>
@@ -139,14 +101,14 @@
 
         </div>
         <div id="img" title="Бесполезный график:)">
-            <figure>График с заданной областью</figure>
-            <img src="123.png" alt="Картинка не грузится" usemap="#picture">
-            <map name="picture">
-                <area shape="rect" coords="30,111,110,150" title="попадание">
-                <area shape="poly" coords="110,110,110,32,150,110,110,110" title="попадание">
-                <area shape="poly" coords="70,110,70,105,72,98,74,93,76,90,79,86,82,82,85,79,88,77,92,75,95,73,100,72,105,71,110,70,110,110,70,110" title="попадание">
-                <area shape="default" title="не попадание">
-            </map>
+            <%--<figure>График с заданной областью</figure>--%>
+            <%--<img src="123.png" alt="Картинка не грузится" usemap="#picture">--%>
+            <%--<map name="picture">--%>
+                <%--<area shape="rect" coords="30,111,110,150" title="попадание">--%>
+                <%--<area shape="poly" coords="110,110,110,32,150,110,110,110" title="попадание">--%>
+                <%--<area shape="poly" coords="70,110,70,105,72,98,74,93,76,90,79,86,82,82,85,79,88,77,92,75,95,73,100,72,105,71,110,70,110,110,70,110" title="попадание">--%>
+                <%--<area shape="default" title="не попадание">--%>
+            <%--</map>--%>
         </div>
 
     </div>
@@ -159,7 +121,13 @@
         </footer>
     -->
 </div>
-<canvas id="canvas"></canvas>
+<canvas id="canvas" width="400px" height="400px">canvas</canvas>
+
+
+
+<script type="text/javascript">
+    <%@include file="/views/js/canvas.js"%>
+</script>
 </body>
 </html>
 

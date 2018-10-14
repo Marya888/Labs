@@ -6,7 +6,8 @@
 
     <groupId>groupId</groupId>
     <artifactId>Internet Applications Development</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0-SNAPSHOT</version>'
+
 
     <dependencies>
         <!-- https://mvnrepository.com/artifact/javax.servlet/servlet-api -->
@@ -18,5 +19,6 @@
         </dependency>
 
     </dependencies>
+
 
 </project>

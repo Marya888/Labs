@@ -8,26 +8,27 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class ControllerServlet extends HttpServlet {
-    static int result;
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String x=req.getParameter("x");
         String y=req.getParameter("y");
         String r=req.getParameter("r");
 
-        result=0;
-        volidet(x, "x");
-        volidet(y, "y");
-        volidet(r, "r");
+        int x_code=volidet(x, "x");
+        int y_code=volidet(y, "y");
+        int r_code=volidet(r, "r");
 
-        if((result)==0) {
+        if((x_code + y_code + r_code)==0) {
             this.getServletContext().setAttribute("x", x);
             this.getServletContext().setAttribute("y", y);
             this.getServletContext().setAttribute("r", r);
             RequestDispatcher dispatcher = req.getRequestDispatcher("/check");
             dispatcher.forward(req, resp);
         }else{
-            req.setAttribute("xyr_code", result);
+            this.getServletContext().setAttribute("x", x_code);
+            this.getServletContext().setAttribute("y", y_code);
+            this.getServletContext().setAttribute("r", r_code);
             RequestDispatcher dispatcher = req.getRequestDispatcher("/Start.jsp");
             dispatcher.forward(req, resp);
         }
@@ -40,16 +41,11 @@ public class ControllerServlet extends HttpServlet {
     }
 
     private int volidet(String arg, String name){
+        int result=0;
         double arg_num=0;
         boolean res=true;
         if(arg==null){
-            if (name == "x") {
-                result = result + 100;
-            } else if (name == "y") {
-                result = result + 10;
-            } else if (name == "r") {
-                result = result + 1;
-            }
+            result=result+100;
         }else {
             try {
                 arg_num = new Double(arg);
@@ -59,24 +55,12 @@ public class ControllerServlet extends HttpServlet {
                     arg_num = new Double(arg);
                 } catch (NumberFormatException ex2) {
                     res = false;
-                    if (name == "x") {
-                        result = result + 400;
-                    } else if (name == "y") {
-                        result = result + 40;
-                    } else if (name == "r") {
-                        result = result + 4;
-                    }
+                    result = result + 400;
                 }
             }
             if (res) {
                 if(arg.charAt(0)=='.'){
-                    if (name == "x") {
-                        result = result + 200;
-                    } else if (name == "y") {
-                        result = result + 20;
-                    } else if (name == "r") {
-                        result = result + 2;
-                    }
+                    result=result+200;
                 }else {
                     if (name == "x") {
                         result = result + volidetRangeForX(arg_num);
