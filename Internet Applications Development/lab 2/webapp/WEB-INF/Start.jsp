@@ -103,23 +103,14 @@
                     </li>
                     <li>
                         <label for="r">R:</label>
-<<<<<<< Updated upstream
-                        <input id="r" name="r" type="radio" value="1" checked>1
-                        <input name="r" type="radio"  value="2">2
-                        <input name="r" type="radio" value="3">3
-                        <input name="r" type="radio" value="4">4
-                        <input name="r" type="radio" value="5">5
-                        <div id=volidRedio>
-                            <%=r_state%>
-                        </div>
-=======
                         <input id="r" name="r" type="radio" value="1" onclick="canvas('canvas', 0, 0, 1);" checked>1
                         <input name="r" type="radio" value="2" onclick="canvas('canvas', 0, 0, 2);">2
                         <input name="r" type="radio" value="3" onclick="canvas('canvas', 0, 0, 3);">3
                         <input name="r" type="radio" value="4" onclick="canvas('canvas', 0, 0, 4);">4
                         <input name="r" type="radio" value="5" onclick="canvas('canvas', 0, 0, 5);">5
-                        <div id=volidRedio></div>
->>>>>>> Stashed changes
+                        <div id=volidRedio>
+                            <%=r_state%>
+                        </div>
                     </li>
                 </ul>
             </form>
@@ -169,11 +160,9 @@
     -->
 </div>
 <canvas id="canvas" width="400px" height="400px">canvas</canvas>
-
 <script type="text/javascript">
     <%@include file="/views/js/canvas.js"%>
 </script>
-
 </body>
 </html>
 
