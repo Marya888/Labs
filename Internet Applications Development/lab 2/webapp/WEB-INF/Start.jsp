@@ -1,15 +1,14 @@
-    <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
-
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="src.Results" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <html>
 <head>
     <meta charset="UTF-8">
     <title>Стартовая страница</title>
     <link rel="stylesheet" href="ret2.css">
-    <%--<script type="text/javascript" charset="utf-8" src="snow.js" defer></script>--%>
-    <!--    <script type="text/javascript" charset="utf-8" src="ajax.js" defer></script>  -->
 </head>
+
 
 
 <body>
@@ -26,7 +25,7 @@
             <p><b>
                 <big>
                     Выполнил студент группы P3100<br>
-                    <em>Шуст Иван Владимирович</em><br>
+                    <em>Шуст Иван Владимирович и Глеб</em><br>
                 </big>
                 Вариант 18025<br>
             </b></p>
@@ -37,6 +36,7 @@
         <div id="layer">
             <form id="form" name="field" action="" method="get" autocomplete="on">
                 <p>Чтобы узнать попала ли ваша точка в в заданную область введите: <label for="x1"><em>координату X</em></label>, <label for="y"><em>координату Y</em></label>, а также <em>параметр R</em></p>
+
                 <ul>
                     <li>
                         <script>
@@ -47,18 +47,20 @@
                                 }
                                 val.style.background='yellow';
                                 bt=val;
+                                document.getElementById("x").value=bt.value;
                             }
                         </script>
                         <label for="x1">X:</label>
-                        <input name="x1" id="x1" type="button" value="-2" onclick="val(this)">
-                        <input name="x2" type="button" value="-1.5" onclick="val(this)">
-                        <input name="x3" type="button" value="-1" onclick="val(this)">
-                        <input name="x4" type="button" value="-0.5" onclick="val(this)">
+                        <input id="x" name="x" type="text" value="1" style="display: none;">
+                        <input name="x1" id="x1" type="button" value="-4" onclick="val(this)">
+                        <input name="x2" type="button" value="-3" onclick="val(this)">
+                        <input name="x3" type="button" value="-2" onclick="val(this)">
+                        <input name="x4" type="button" value="-1" onclick="val(this)">
                         <input name="x5" type="button" value="0" onclick="val(this)">
-                        <input name="x6" type="button" value="0.5" onclick="val(this)">
-                        <input name="x7" type="button" value="1" onclick="val(this)">
-                        <input name="x8" type="button" value="1.5" onclick="val(this)">
-                        <input name="x9" type="button" value="2" onclick="val(this)">
+                        <input name="x6" type="button" value="1" onclick="val(this)">
+                        <input name="x7" type="button" value="2" onclick="val(this)">
+                        <input name="x8" type="button" value="3" onclick="val(this)">
+                        <input name="x9" type="button" value="4" onclick="val(this)">
                         <%
                             int code=new Integer(request.getAttribute("xyr_code").toString());
 
@@ -95,6 +97,10 @@
                             <%=x_state%>
                         </div>
                     </li>
+
+
+
+
                     <li>
                         Y <input id="y" name="y" type="text" placeholder="(-3...5)">
                         <div id=volidText>
@@ -113,6 +119,9 @@
                         </div>
                     </li>
                 </ul>
+
+
+
             </form>
 
             <div id="table">
@@ -127,8 +136,30 @@
                         <th id="foo5" style="color:blue">Текущее время</th>
                         <th id="foo6" style="color:blue">Время работы (мкс)</th>
                     </tr>
+
                     </thead>
                     <tbody id="tbody">
+
+                    <%
+                        if(application.getAttribute("listResults") != null){
+                            ArrayList<Results> listResult = (ArrayList<Results>) application.getAttribute("listResults");
+                            for (Results result: listResult){
+                    %>
+                    <tr>
+                        <td> <%= result.getX()%> </td>
+                        <td> <%= result.getY()%> </td>
+                        <td> <%= result.getR()%> </td>
+                    </tr>
+                    <%
+                        }
+                    }else{
+                    %>
+                    lol
+                    <%
+
+                        }
+                    %>
+
                     </tbody>
                 </table>
             </div>
@@ -136,6 +167,7 @@
             <p>
                 <input type="button" name="done" value="Узнать результат попадания">
             </p>
+
 
         </div>
         <canvas id="canvas" width="400px" height="400px">canvas</canvas>
@@ -150,8 +182,13 @@
         </footer>
     -->
 </div>
+
 <script type="text/javascript">
-    <%@include file="/views/js/canvas.js"%>
+    <%@include file="ajax.js"%>
+</script>
+
+<script type="text/javascript">
+    <%@include file="canvas.js"%>
 </script>
 </body>
 </html>

@@ -1,5 +1,3 @@
-//package src;//http://localhost:5280/mywar/kek
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;

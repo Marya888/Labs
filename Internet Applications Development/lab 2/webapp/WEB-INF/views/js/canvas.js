@@ -1,11 +1,11 @@
 
-  draw("canvas");
+draw("canvas");
 
 
 
 document.getElementById("canvas").onclick = function (ev) {
     var r = document.getElementById("form").r.value;
-  clicCanvas("canvas", r, ev);
+    clicCanvas("canvas", r, ev);
 };
 
 function canvas(id, x, y, r) {
@@ -128,8 +128,9 @@ function canvas(id, x, y, r) {
         context.stroke();
         context.fill();
     }
-
-	window.location.href = "/lab3/check?x="+x+"&y="+y+"&r="+r+"&iscanvas=true";
+    x = x.toFixed(3);
+    y = y.toFixed(3);
+    window.location.href = "/lab3/check?x="+x+"&y="+y+"&r="+r+"&iscanvas=true";
 }
 
 function draw(id) {

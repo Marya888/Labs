@@ -10,30 +10,30 @@
 
 <body>
 
-    <table>
-        <caption>Данные и результаты</caption>
-        <thead>
-        <tr>
-            <th id="foo1" style="color:green">x</th>
-            <th id="foo2" style="color:green">y</th>
-            <th id="foo3" style="color:green">R</th>
-            <th id="foo4" style="color:#A52A2A">Результат</th>
-            <th id="foo5" style="color:blue">Текущее время</th>
-            <th id="foo6" style="color:blue">Время работы (мкс)</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
+<table>
+    <caption>Данные и результаты</caption>
+    <thead>
+    <tr>
+        <th id="foo1" style="color:green">x</th>
+        <th id="foo2" style="color:green">y</th>
+        <th id="foo3" style="color:green">R</th>
+        <th id="foo4" style="color:#A52A2A">Результат</th>
+        <th id="foo5" style="color:blue">Текущее время</th>
+        <th id="foo6" style="color:blue">Время работы (мкс)</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
 
-            <td><%=request.getAttribute("x").toString()%></td>
-            <td><%=request.getAttribute("y").toString()%></td>
-            <td><%=request.getAttribute("r").toString()%></td>
-            <td><%=request.getAttribute("find").toString()%></td>
-            <td></td>
-            <td></td>
-        </tr>
-        </tbody>
-    </table>
+        <td><%=request.getAttribute("x").toString()%></td>
+        <td><%=request.getAttribute("y").toString()%></td>
+        <td><%=request.getAttribute("r").toString()%></td>
+        <td><%=request.getAttribute("find").toString()%></td>
+        <td></td>
+        <td></td>
+    </tr>
+    </tbody>
+</table>
 
 
 </body>
