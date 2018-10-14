@@ -1,6 +1,6 @@
-window.onload = function (ev) {
+
   draw("canvas");
-};
+
 
 
 document.getElementById("canvas").onclick = function (ev) {
@@ -128,6 +128,8 @@ function canvas(id, x, y, r) {
         context.stroke();
         context.fill();
     }
+
+	window.location.href = "/lab3/check?x="+x+"&y="+y+"&r="+r+"&iscanvas=true";
 }
 
 function draw(id) {
