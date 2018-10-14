@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Результат</title>
-    <link rel="stylesheet" href="ret3.css">
+    <link rel="stylesheet" href="ret2.css">
     <!--    <script type="text/javascript" charset="utf-8" src="ajax.js" defer></script>  -->
 </head>
 

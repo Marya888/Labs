@@ -12,13 +12,17 @@ public class AreaCheckServlet extends HttpServlet {
 
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int x,r;
-        double y;
-
-        x=new Integer(this.getServletContext().getAttribute("x").toString());
-        y=new Double(this.getServletContext().getAttribute("y").toString());
-        r=new Integer(this.getServletContext().getAttribute("r").toString());
-
+        int x=0,r=0;
+        double y=0;
+        try {
+            x = new Integer(this.getServletContext().getAttribute("x").toString());
+            y = new Double(this.getServletContext().getAttribute("y").toString());
+            r = new Integer(this.getServletContext().getAttribute("r").toString());
+        }
+        catch(NullPointerException e){
+            RequestDispatcher dispatcher = req.getRequestDispatcher("/kek");
+            dispatcher.forward(req, resp);
+        }
         req.setAttribute("x",x);
         req.setAttribute("y",y);
         req.setAttribute("r",r);
