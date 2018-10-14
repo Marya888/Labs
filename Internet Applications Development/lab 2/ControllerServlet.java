@@ -1,4 +1,4 @@
-package src;//http://localhost:5280/mywar/kek
+//package src;//http://localhost:5280/mywar/kek
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -15,24 +15,23 @@ public class ControllerServlet extends HttpServlet {
         String y=req.getParameter("y");
         String r=req.getParameter("r");
 
-        int x_code=(int)volidet(x, "x");
-        double y_code=volidet(y, "y");
-        int r_code=(int)volidet(r, "r");
+        int x_code=volidet(x, "x");
+        int y_code=volidet(y, "y");
+        int r_code=volidet(r, "r");
 
         if((x_code + y_code + r_code)==0) {
-            this.getServletContext().setAttribute("x", x_code);
-            this.getServletContext().setAttribute("y", y_code);
-            this.getServletContext().setAttribute("r", r_code);
+            this.getServletContext().setAttribute("x", x);
+            this.getServletContext().setAttribute("y", y);
+            this.getServletContext().setAttribute("r", r);
             RequestDispatcher dispatcher = req.getRequestDispatcher("/check");
             dispatcher.forward(req, resp);
         }else{
-            RequestDispatcher dispatcher = req.getRequestDispatcher("/Start.jsp");
-            dispatcher.forward(req, resp);
+            this.getServletContext().setAttribute("x", x_code);
+            this.getServletContext().setAttribute("y", y_code);
+            this.getServletContext().setAttribute("r", r_code);
+//            RequestDispatcher dispatcher = req.getRequestDispatcher("/Start.jsp");
+//            dispatcher.forward(req, resp);
         }
-//            pw.write("Страница JSP");
-//            pw.write("x = "+x_code);
-//            pw.write("y = "+y_code);
-//            pw.write("r = "+r_code);
 
     }
 
@@ -41,7 +40,7 @@ public class ControllerServlet extends HttpServlet {
         doGet(req, resp);
     }
 
-    private double volidet(String arg, String name){
+    private int volidet(String arg, String name){
         int result=0;
         double arg_num=0;
         boolean res=true;
@@ -64,11 +63,11 @@ public class ControllerServlet extends HttpServlet {
                     result=result+200;
                 }else {
                     if (name == "x") {
-                        result = result + volidetКangeForX(arg_num);
+                        result = result + volidetRangeForX(arg_num);
                     } else if (name == "y") {
-                        result = result + volidetКangeForY(arg_num);
+                        result = result + volidetRangeForY(arg_num);
                     } else if (name == "r") {
-                        result = result + volidetКangeForR(arg_num);
+                        result = result + volidetRangeForR(arg_num);
                     }
                 }
             }
@@ -76,21 +75,21 @@ public class ControllerServlet extends HttpServlet {
         return result;
     }
 
-    private int volidetКangeForX(double arg_num){
+    private int volidetRangeForX(double arg_num){
         if (Math.abs(arg_num)!=4 && Math.abs(arg_num)!=3 && Math.abs(arg_num)!=2 && Math.abs(arg_num)!=1 && Math.abs(arg_num)!=0) {
             return 800;
         }
         return 0;
     }
 
-    private int volidetКangeForY(double arg_num){
+    private int volidetRangeForY(double arg_num){
         if (arg_num<=-3 | arg_num>=5) {
             return 80;
         }
         return 0;
     }
 
-    private int volidetКangeForR(double arg_num){
+    private int volidetRangeForR(double arg_num){
         if (arg_num!=1 && arg_num!=2 && arg_num!=3 && arg_num!=4 && arg_num!=5) {
             return 8;
         }

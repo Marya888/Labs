@@ -13,12 +13,12 @@
 
     <servlet>
         <servlet-name>mylab</servlet-name>
-        <servlet-class>src.ControllerServlet</servlet-class>
+        <servlet-class>ControllerServlet</servlet-class>
     </servlet>
 
     <servlet>
         <servlet-name>mylab2</servlet-name>
-        <servlet-class>src.AreaCheckServlet</servlet-class>
+        <servlet-class>AreaCheckServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>

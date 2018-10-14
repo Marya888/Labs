@@ -5,7 +5,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Лаба № 2</title>
+    <title>Стартовая страница</title>
     <link rel="stylesheet" href="ret2.css">
     <script type="text/javascript" charset="utf-8" src="snow.js" defer></script>
     <!--    <script type="text/javascript" charset="utf-8" src="ajax.js" defer></script>  -->

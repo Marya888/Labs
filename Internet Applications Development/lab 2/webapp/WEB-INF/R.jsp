@@ -24,10 +24,11 @@
         </thead>
         <tbody>
         <tr>
-            <td><%=request.getAttribute("x")%></td>
-            <td><%=request.getAttribute("y")%></td>
-            <td><%=request.getAttribute("r")%></td>
-            <td><%=request.getAttribute("find")%></td>
+
+            <td><%=request.getAttribute("x").toString()%></td>
+            <td><%=request.getAttribute("y").toString()%></td>
+            <td><%=request.getAttribute("r").toString()%></td>
+            <td><%=request.getAttribute("find").toString()%></td>
             <td></td>
             <td></td>
         </tr>

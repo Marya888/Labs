@@ -1,4 +1,4 @@
-package src;
+//package src;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 public class AreaCheckServlet extends HttpServlet {
 
@@ -14,16 +15,22 @@ public class AreaCheckServlet extends HttpServlet {
         int x,r;
         double y;
 
-        x=new Integer((Integer) this.getServletContext().getAttribute("x"));
-        y=new Double((Double) this.getServletContext().getAttribute("y"));
-        r=new Integer((Integer) this.getServletContext().getAttribute("r"));
+        x=new Integer(this.getServletContext().getAttribute("x").toString());
+        y=new Double(this.getServletContext().getAttribute("y").toString());
+        r=new Integer(this.getServletContext().getAttribute("r").toString());
 
+        req.setAttribute("x",x);
+        req.setAttribute("y",y);
+        req.setAttribute("r",r);
         req.setAttribute("find",find(x,y,r));
+
+//        PrintWriter pw = resp.getWriter();
+//            pw.write("x="+x+" ");
+//            pw.write("y="+y+" ");
+//            pw.write("r="+r+" ");
 
         RequestDispatcher dispatcher = req.getRequestDispatcher("/R.jsp");
         dispatcher.forward(req, resp);
-
-
 
     }
 
