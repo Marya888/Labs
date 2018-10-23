@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#define TYPE long  // or #define TYPE int
 /*-----------
  *   list   |
  *          |
@@ -17,7 +18,7 @@
 struct node {
 	struct node *next;
 	struct node *last;
-	int value;
+	TYPE value;
 };
 
 struct list {
@@ -26,7 +27,7 @@ struct list {
 	int size;
 };
 
-struct node* nodeCreate(int val){
+struct node* nodeCreate(TYPE val){
 	struct node *new_node = (struct node *)malloc(sizeof(struct node));
 	new_node->value = val; 	
 	return new_node;
@@ -48,7 +49,7 @@ struct node* defaultNode(){
 	return default_node;
 }
 
-void listAddFront(struct list *l, int val) {
+void listAddFront(struct list *l, TYPE val) {
 	struct node *new_element = nodeCreate(val);
 	if (l->back == NULL) {
 		new_element->last = NULL;
@@ -64,7 +65,7 @@ void listAddFront(struct list *l, int val) {
 	l->front = new_element;
 }
 
-void listAddBack(struct list *l, int val){
+void listAddBack(struct list *l, TYPE val){
 	struct node *new_element = nodeCreate(val);
 	if (l->back == NULL) {
 		new_element->last = NULL;
@@ -84,7 +85,7 @@ int listLength(struct list *l){
 	return l->size;
 }
 
-int listGet(struct list *l, int index){	
+TYPE listGet(struct list *l, int index){	
 	if(index>(l->size)){
 		return defaultNode()->value;
 	}
@@ -96,9 +97,9 @@ int listGet(struct list *l, int index){
 	return node_result->value;
 }
 
-int sum(struct list *l){
+TYPE sum(struct list *l){
 	struct node *element = l->back;
-	int sum=element->value;
+	TYPE sum=element->value;
 	while(element->next != NULL){
 		element = element->next;
 		sum+=element->value;		
@@ -137,8 +138,8 @@ struct node* listNodeAt(struct list *l, int index){
 
 void fill(struct list *l){
 	
-	char string[512], *start, *end;
-    long value;
+    char string[512], *start, *end;
+    TYPE value;
     end = string;
     fflush(stdin);
     printf("Enter values for list:\n");
@@ -206,6 +207,7 @@ int main(){
 	//printf("%d\n", sum(my_list2));
 	//struct list *my_list3 = iterate(3, 6, function);
 	//printf("%d\n", sum(my_list3));
+	printf("%d\n", sizeof(my_list->back->value));  // return syzeof(int) or syzeof(long)
 	return 0;
 }
 
