@@ -1,0 +1,162 @@
+* {
+    font-family: Georgia, Times New Roman, serif;
+    /*fantasy, "Comic Sans MS", Sans-serif*/
+}
+
+header{
+    border-radius: 20px 20px 20px 20px;
+    background: #8FBC8F;
+
+}
+
+header h4, #name{
+    color: rgb(255,255,255);
+}
+
+header h4 ~ h1{
+    text-shadow: 4px 3px 3px grey;
+}
+
+#name{
+    text-align: right;
+    margin-right: 15px;
+    font-size: 16px;
+}
+
+header>h4,header>h1{
+    text-align: center;
+}
+
+#name:hover:first-letter{
+    color: blue;
+}
+
+
+body{
+    padding: 5px;
+    width: 96%;
+    margin: auto;
+    /*background-image: url(../resources/images/man.jpg);*/
+    /*background-image: "https://image.freepik.com/free-photo/no-translate-detected_1262-5889.jpg";*/
+    background: url("https://image.freepik.com/free-photo/no-translate-detected_1262-5889.jpg") no-repeat 0 0/cover;
+    /*background-image: url(man.jpg);*/
+    /*     position: absolute;
+        z-index: 2; */
+}
+
+header{
+    opacity: 0.7;
+    filter: alpha(Opacity=70);
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 98%;
+}
+body {
+    position: relative;
+    min-height: 100%;
+}
+#content{
+    padding-bottom: 90px;
+}
+footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 80px;
+}
+
+#button{
+    padding-top: 3%;
+    padding-left: 10%;
+    /*     padding-right: 900px; */
+    padding-bottom: 3%;
+    /*     background: red; */
+}
+
+a{
+    color:red;
+    /*   text-align: center; */
+    padding-left: 20%;
+
+}
+
+
+/*
+2
+* {
+  margin: 0;
+  padding: 0;
+}
+html,body{
+  height: 100%;
+}
+#content {
+  box-sizing: border-box;
+  min-height: 100%;
+  padding-bottom: 90px;
+}
+footer {
+  height: 80px;
+  margin-top: -80px;
+}
+*/
+
+/*
+3
+* {
+  margin: 0;
+  padding: 0;
+}
+html,body {
+  height: 100%;
+}
+body{
+  display: table;
+  height: 100%;
+}
+#content {
+  display: table-row;
+  height: 100%;
+}
+*/
+
+/*
+4
+* {
+  margin: 0;
+  padding: 0;
+}
+#content{
+  min-height: calc(100vh - 80px);
+}
+*/
+
+/*
+5
+* {
+  margin: 0;
+  padding: 0;
+}
+html,body {
+  height: 100%;
+}
+body{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+#content {
+  flex: 1 0 auto;
+}
+footer {
+  flex: 0 0 auto;
+}
+*/
