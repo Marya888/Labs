@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"-->
+        <!--"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">-->
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+
+<h:head>
+    <title>Start page</title>
+    <h:outputStylesheet library = "css" name = "start50.css"  />
+    <!--<h:outputScript library="js" name="snow.js"/>-->
+    <!--<h:outputScript library="images" name="sen.jpg"/>-->
+</h:head>
+
+<h:body>
+    <div id="content">
+    <header>
+        <!--<h4>ITMO university<br/>-->
+            <!--Computational Tecnology-->
+        <h4>Университет ИТМО<br/>
+            Кафедра ВТ
+        </h4>
+        <h1>
+            <!--Laboratory work-->
+            Лабораторная работа №3
+        </h1>
+        <div id="name">
+            <p><b>
+                <big>
+                    P3200<br/>
+                    <!--<em>Shust Ivan and Gleb Kekovich</em><br/>-->
+                    <em>Шуст Иван Владимирович и некий Глеб</em><br/>
+                </big>
+                <!--Version 18025<br/>-->
+                Вариант 32054<br/>
+            </b></p>
+        </div>
+    </header>
+
+        <div id="button">
+    <h:form>
+        <h:commandButton value="Start" action="main" />
+    </h:form>
+        </div>
+
+    <!--<a href="https://vk.com/serge_klimenkov">I am your Dominus! </a>-->
+    <a href="https://vk.com/serge_klimenkov">Кто твой господин?</a>
+    </div>
+    <footer>
+        <h:form>
+            <h:outputText id="txt_count" value="#{time.newTime()}" />
+            <p:poll interval="6" listener="#{time.newTime()}" update="txt_count"/>
+        </h:form>
+    </footer>
+
+
+    <!--<canvas id="canvas"></canvas>-->
+</h:body>
+</html>
+

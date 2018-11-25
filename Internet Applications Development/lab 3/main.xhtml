@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>Main page</title>
+    <h:outputStylesheet library = "css" name = "main23.css"/>
+    <!--<h:outputScript library="js" name="canvas.js"/>-->
+    <!--<h:outputScript library="js" name="snow.js"/>-->
+    <h:outputScript library="js" name="val31.js"/>
+</h:head>
+
+<!--<h:body>-->
+<h:body onload="init()">
+    <div class="canvas">
+        <canvas id="canvas" onclick="clickCanvas()" style="background-color:#ffffff; border-radius: 20px;" width="300" height="300"/>
+    </div>
+    <h:form id="newXYR">
+
+        <div class="input">
+            <!--<h:panelGrid columns="1" style="margin-bottom: 10px">-->
+            <h:outputLabel for="x" value="X: "/>
+            <h:inputText id="x" value="#{lolybean.values.x}" required="true" label="X" placeholder="X">
+                <f:converter converterId="DoubleAllConverter"/>
+                <f:validator validatorId="XValidator" />
+            </h:inputText>
+            <h:message for="x" style="color:red" />
+            <p:slider for="x" minValue="-5.0" maxValue="5.0" step="0.1"/>
+            <!--</h:panelGrid>-->
+        </div>
+
+        <div class="input">
+            <h:outputLabel for="y" value="Y: "/>
+            <h:inputText id="y" value="#{lolybean.values.y}" required="true" label="Y" placeholder="Y" >
+                <f:converter converterId="DoubleAllConverter"/>
+                <f:validateDoubleRange minimum="-3" maximum="5" />
+            </h:inputText>
+            <h:message for="y" style="color:red" />
+        </div>
+        <script>
+            var inp_x = document.getElementById('newXYR:x');
+            var inp_y = document.getElementById('newXYR:y');
+            inp_x.onkeyup = function(e) {
+                // e = e || event;
+                if (e.keyCode == 13) {
+                    document.getElementById("newXYR:check").click();
+                }
+            }
+            inp_y.onkeyup = function(e) {
+                // e = e || event;
+                if (e.keyCode == 13) {
+                    document.getElementById("newXYR:check").click();
+                }
+            }
+
+        </script>
+
+        <div class="input">
+            <h:outputLabel value="R: "/>
+            <h:inputHidden value = "#{lolybean.values.r}" id = "r" />
+
+            <h:commandButton id="but1" class="but" value="1" onclick="value(this)" style="background: yellow">
+                <f:ajax/>
+            </h:commandButton>
+            <h:commandButton id="but2" class="but" value="2" onclick="value(this)">
+                <f:ajax/>
+            </h:commandButton>
+            <h:commandButton id="but3" class="but" value="3" onclick="value(this)">
+                <f:ajax/>
+            </h:commandButton>
+            <h:commandButton id="but4" class="but" value="4" onclick="value(this)">
+                <f:ajax/>
+            </h:commandButton>
+            <h:commandButton id="but5" class="but" value="5" onclick="value(this)">
+                <f:ajax/>
+            </h:commandButton>
+
+            <script>
+                var bt = document.getElementById("newXYR:but1");
+                function value(val) {
+                    if(bt!=undefined){
+                        bt.style.background=val.style.background;
+                    }
+                    val.style.background='yellow';
+                    bt=val;
+                    drawCanvas('canvas',val.value);
+                    document.getElementById('newXYR:r').value = val.value;
+                }
+
+                // function slideAnimation(event, ui) {
+                // console.log(ui.value);
+                // alert(x.toString());
+                // drawCanvas('canvas',ui.value);
+                // <!--// drawPoint("#{lolybean.values.x}","#{lolybean.values.y}", ui.value);-->
+                // }
+            </script>
+        </div>
+
+        <div class="input">
+            <h:commandButton id="check" class="check" value="Check" action="#{lolybean.addXYR}">
+                <!--<f:ajax execute="newXYR" render=":XYRTable"/>-->
+            </h:commandButton>
+        </div>
+
+    </h:form>
+    <h:form id="redirect">
+        <h:commandButton value="Restart" action="start" />
+    </h:form>
+    <h:panelGroup id="XYRTable">
+        <h:dataTable value="#{lolybean.list_with_values}" var="values">
+            <h:column>
+                <f:facet name="header">X</f:facet>
+                #{values.x}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Y</f:facet>
+                #{values.y}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">R</f:facet>
+                #{values.r}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Result</f:facet>
+                #{values.result}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Time now</f:facet>
+                #{values.time_now}
+            </h:column>
+
+            <!--<h:column>-->
+                <!--<f:facet name="header">Time work</f:facet>-->
+                <!--#{values.time_work}-->
+            <!--</h:column>-->
+        </h:dataTable>
+    </h:panelGroup>
+
+</h:body>
+</html>
+
+
+
+<!--<h:outputScript>-->
+<!--var bt;-->
+<!--function value(val) {-->
+<!--if(bt!=undefined){-->
+<!--bt.style.background=val.style.background;-->
+<!--}-->
+<!--val.style.background='yellow';-->
+<!--bt=val;-->
+<!--// document.getElementById("x").value=bt.value;-->
+<!--drawCanvas('canvas',1);-->
+<!--}-->
+
+<!--// function slideAnimation(event, ui) {-->
+<!--// console.log(ui.value);-->
+<!--// alert(x.toString());-->
+<!--// drawCanvas('canvas',ui.value);-->
+<!--&lt;!&ndash;// drawPoint("#{lolybean.values.x}","#{lolybean.values.y}", ui.value);&ndash;&gt;-->
+<!--// }-->
+<!--</h:outputScript>-->
